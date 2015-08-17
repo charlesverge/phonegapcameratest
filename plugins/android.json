@@ -49,7 +49,7 @@
         "org.apache.cordova.file": {
             "PACKAGE_NAME": "com.skillwish.cameratest"
         },
-        "org.apache.cordova.camera": {
+        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.skillwish.cameratest"
         }
     },

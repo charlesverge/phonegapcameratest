@@ -154,29 +154,29 @@ module.exports = [
         "runs": true
     },
     {
-        "file": "plugins/org.apache.cordova.camera/www/CameraConstants.js",
-        "id": "org.apache.cordova.camera.Camera",
+        "file": "plugins/cordova-plugin-camera/www/CameraConstants.js",
+        "id": "cordova-plugin-camera.Camera",
         "clobbers": [
             "Camera"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.camera/www/CameraPopoverOptions.js",
-        "id": "org.apache.cordova.camera.CameraPopoverOptions",
+        "file": "plugins/cordova-plugin-camera/www/CameraPopoverOptions.js",
+        "id": "cordova-plugin-camera.CameraPopoverOptions",
         "clobbers": [
             "CameraPopoverOptions"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.camera/www/Camera.js",
-        "id": "org.apache.cordova.camera.camera",
+        "file": "plugins/cordova-plugin-camera/www/Camera.js",
+        "id": "cordova-plugin-camera.camera",
         "clobbers": [
             "navigator.camera"
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.camera/www/ios/CameraPopoverHandle.js",
-        "id": "org.apache.cordova.camera.CameraPopoverHandle",
+        "file": "plugins/cordova-plugin-camera/www/ios/CameraPopoverHandle.js",
+        "id": "cordova-plugin-camera.CameraPopoverHandle",
         "clobbers": [
             "CameraPopoverHandle"
         ]
@@ -188,7 +188,7 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.0.0",
     "cordova-plugin-device": "1.0.1",
     "org.apache.cordova.file": "1.3.3",
-    "org.apache.cordova.camera": "0.3.6"
+    "cordova-plugin-camera": "1.2.0"
 }
 // BOTTOM OF METADATA
 });

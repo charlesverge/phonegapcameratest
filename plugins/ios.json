@@ -37,7 +37,12 @@
                             "count": 2
                         }
                     ],
-                    "AVFoundation.framework": []
+                    "AVFoundation.framework": [
+                        {
+                            "xml": false,
+                            "count": 1
+                        }
+                    ]
                 }
             },
             "config.xml": {
@@ -84,7 +89,7 @@
         "org.apache.cordova.file": {
             "PACKAGE_NAME": "com.skillwish.cameratest"
         },
-        "org.apache.cordova.camera": {
+        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.skillwish.cameratest"
         }
     },

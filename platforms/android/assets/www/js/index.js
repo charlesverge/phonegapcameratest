@@ -57,7 +57,6 @@ var app = {
         var settings = {
             quality: 80,
             destinationType: Camera.PictureSourceType.FILE_URI,
-            //destinationType : destinationType.NATIVE_URI,
             allowEdit: false, // this turns on / off cropping
             saveToPhotoAlbum: true,
             correctOrientation: false,
@@ -78,7 +77,7 @@ var app = {
         navigator.camera.getPicture(app.camerasuccess, app.camerafail, settings);
     },
     camerasuccess: function (imageURI) {
-        if (device.platform == 'ios') {
+        if (device.platform == 'iOS') {
             app.camerasuccessios(imageURI);
         } else if (device.platform == 'Android') {
             app.camerasuccessandroid(imageURI);
@@ -88,106 +87,13 @@ var app = {
         }
     },
     camerasuccessios: function (imageURI) {
+        console.log("camerasuccessios: imageURI: " + imageURI);
         var imageElement = document.getElementById('image');
         imageElement.innerHTML = '<img src="' + imageURI + '">';
     },
     camerasuccessandroid: function (imageURI) {
         console.log("camerasuccessandroid: imageURI: " + imageURI);
-            var imageElement = document.getElementById('image');
-            imageElement.innerHTML = '<img src="' + imageURI + '">';
-        //return;
-         if (0 && /file:/.test(imageURI)) {
-           
-            app.filelocation = imageURI;
-            var imageElement = document.getElementById('image');
-            imageElement.innerHTML = '<img src="' + imageURI + '">';
-            return;
-        }
-        var gotFileEntry = function (fileEntry) {
-            console.log("camerasuccessandroid: fullPath: " + fileEntry.fullPath);
-            app.filelocation = fileEntry.nativeURL;
-            console.log("camerasuccessandroid: imageURI = " + imageURI + " questionfileURI = " + self.filelocation + " dumpvar = " + dumpvar(fileEntry));
-            var imageElement = document.getElementById('image');
-            imageElement.innerHTML = '<img src="' + app.filelocation + '">';
-        },
-        fserror = function (error) {
-            console.log('camerasuccessandroid fsFailresolveLocalFileSystemURI error: ' + dumpvar(error));
-        };
-        // resolve file system for image
-        if (typeof window.resolveLocalFileSystemURL !== "undefined") {
-            console.log('camerasuccessandroid calling resolveLocalFileSystemURL, imageURI:' + imageURI);
-            window.resolveLocalFileSystemURL(imageURI, gotFileEntry, fserror);
-        } else {
-            console.log('camerasuccessandroid resolveLocalFileSystemURL is undefined, imageURI:' + imageURI);
-        }
+        var imageElement = document.getElementById('image');
+        imageElement.innerHTML = '<img src="' + imageURI + '">';
     },
 };
-
-/**
- * Recursively dump an object.
- * @param mixed err Object or scalar to return as a string.
- * @returns sring Formatted string respentation of the object.
- */
-function dumpvar(err, depth) {
-    "use strict";
-    var vDebug = "",
-        prop;
-    // Prevent infinite loops.
-    if (typeof depth == 'undefined') {
-        depth = 3;
-    }
-    var prefix = '';
-    if (depth !== 3) {
-        vDebug += "\n";
-        for (var i = 0; i < (3 - depth); i++) {
-            prefix += "    ";
-        }
-    }
-    if (typeof err === "string") {
-        return err;
-    }
-    for (prop in err) {
-        if (err.hasOwnProperty(prop)) {
-            vDebug += prefix + "property: " + prop + " value: [ " + (is_array(err[prop]) || typeof err[prop] == 'object' && !is_empty(err[prop]) ? dumpvar(err[prop], depth - 1) : err[prop]) + "]\n";
-        }
-    }
-    if (depth !== 3) {
-        return vDebug;
-    }
-    if (typeof err !== "undefined" && err !== null) {
-        vDebug += "toString(): " + " value: [" + err.toString() + "]";
-    } else {
-        if (typeof err === "undefined") {
-            vDebug += "toString(): " + " value: undefined";
-        } else {
-            vDebug += "toString(): " + " value: null";
-        }
-    }
-    return vDebug;
-}
-
-/**
- * Check is object is an array.
- * @return boolean True on is an array.
- */
-function is_array(o) {
-    'use strict';
-    if (o !== null && typeof o === 'object') {
-        return (typeof o.push === 'undefined') ? false : true;
-    } else {
-        return false;
-    }
-}
-
-/**
- * Check is object is empty.
- * @return boolean True on empty object.
- */
-function is_empty(obj) {
-    for (var prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-            return false;
-        }
-    }
-    return true;
-}

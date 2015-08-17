@@ -56,7 +56,7 @@ var app = {
     capture: function () {
         var settings = {
             quality: 80,
-            destinationType: Camera.PictureSourceType.FILE_URI,
+            destinationType: Camera.DestinationType.FILE_URI,
             allowEdit: false, // this turns on / off cropping
             saveToPhotoAlbum: true,
             correctOrientation: false,
