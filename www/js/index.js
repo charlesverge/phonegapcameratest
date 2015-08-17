@@ -34,6 +34,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        app.setupcamera();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -45,5 +46,54 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
-    }
+    },
+    setupcamera: function () {
+        var cameraElement = document.getElementById('camera');
+        cameraElement.onclick = app.capture;
+        cameraElement = document.getElementById('select');
+        cameraElement.onclick = app.select;
+    },
+    capture: function () {
+        var settings = {
+            quality: 80,
+            destinationType: Camera.PictureSourceType.FILE_URI,
+            allowEdit: false, // this turns on / off cropping
+            saveToPhotoAlbum: true,
+            correctOrientation: false,
+            encodingType: navigator.camera.EncodingType.JPEG,
+            cameraDirection: Camera.Direction.BACK,
+            targetWidth: 1280,
+            targetHeight: 800
+        };
+        navigator.camera.getPicture(app.camerasuccess, app.camerafail, settings);
+    },
+    select: function () {
+        var settings = {
+            quality: 90,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+            correctOrientation : false,
+        };
+        navigator.camera.getPicture(app.camerasuccess, app.camerafail, settings);
+    },
+    camerasuccess: function (imageURI) {
+        if (device.platform == 'iOS') {
+            app.camerasuccessios(imageURI);
+        } else if (device.platform == 'Android') {
+            app.camerasuccessandroid(imageURI);
+        } else {
+            console.log('No success call back for platform ' + device.platform + ' using ios callback');
+            app.camerasuccessios(imageURI);
+        }
+    },
+    camerasuccessios: function (imageURI) {
+        console.log("camerasuccessios: imageURI: " + imageURI);
+        var imageElement = document.getElementById('image');
+        imageElement.innerHTML = '<img src="' + imageURI + '">';
+    },
+    camerasuccessandroid: function (imageURI) {
+        console.log("camerasuccessandroid: imageURI: " + imageURI);
+        var imageElement = document.getElementById('image');
+        imageElement.innerHTML = '<img src="' + imageURI + '">';
+    },
 };

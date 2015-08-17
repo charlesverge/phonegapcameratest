@@ -1,12 +1,4 @@
 {
-    "org.apache.cordova.camera": {
-        "source": {
-            "type": "registry",
-            "id": "org.apache.cordova.camera"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
@@ -19,6 +11,22 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.apache.cordova.file": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.file"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "org.apache.cordova.camera": {
+        "source": {
+            "type": "registry",
+            "id": "org.apache.cordova.camera"
         },
         "is_top_level": true,
         "variables": {}
